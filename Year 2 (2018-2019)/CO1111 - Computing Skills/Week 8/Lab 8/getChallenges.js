@@ -18,7 +18,7 @@ xhttp.onreadystatechange = function() {
            var newItem = document.createElement("li");
            var linkItem = document.createElement("a");
            linkItem.innerHTML = object.treasureHunts[i].name;
-           linkItem.href = "#"; //TODO REPLACE
+           linkItem.href = "https://codecyprus.org/th/api/start?player=Homer&app=simpsons-app&treasure-hunt-id=" + object.treasureHunts[i].uuid;
            newItem.appendChild(linkItem);
            challangesList.appendChild(newItem);
         }
