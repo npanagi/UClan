@@ -11,9 +11,16 @@ xhttp.onreadystatechange = function() {
         //console.log(this.responseText);
 
         var object = JSON.parse(this.responseText);
+        var challangesList = document.getElementById("challenges");
 
        for (var i = 0; i < object.treasureHunts.length; i++) {
-            console.log(object.treasureHunts[i].name);
+            //console.log(object.treasureHunts[i].name);
+           var newItem = document.createElement("li");
+           var linkItem = document.createElement("a");
+           linkItem.innerHTML = object.treasureHunts[i].name;
+           linkItem.href = "#"; //TODO REPLACE
+           newItem.appendChild(linkItem);
+           challangesList.appendChild(newItem);
         }
     }
     else {
@@ -28,5 +35,3 @@ var myObj = {firstname: "John", lastname: "Smith", age: 30, male: true}; //Defin
 var myJSON = JSON.stringify(myObj); //Convert it to string using JSON.stringify().
 
 console.log(myJSON); //Print the JSON text to the console.
-
-var challangesList = document.getElementById("challenges");
