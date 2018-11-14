@@ -3,7 +3,7 @@ xhttp.onreadystatechange = function() {
     if (this.readyState === 4 && this.status === 200) {
         //console.log(this.responseText);
         var object = JSON.parse(this.responseText);
-        for (var i = 0; i < object.treasureHunts; i++) {
+       for (var i = 0; i < object.treasureHunts.length; i++) {
             console.log(object.treasureHunts[i].name);
         }
 
@@ -21,4 +21,5 @@ var myObj = {firstname: "John", lastname: "Smith", age: 30, male: true};
 var myJSON = JSON.stringify(myObj); //Convert it to string using JSON.stringify().
 console.log(myJSON); //Print the JSON text to the console.
 
-
+var challangesList = document.getElementById("challenges");
+//for (var i=0; i < )
