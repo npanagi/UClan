@@ -18,27 +18,32 @@ void main()
 
 	/**** Set up your scene here ****/
 	int n = 0;
-	ICamera* camera = myEngine->CreateCamera(kFPS, 0.0, 12.0, -50);
+	ICamera* c = myEngine->CreateCamera(kFPS, 0.0, 12.0, -50);
 	IMesh* mFloor = myEngine->LoadMesh("Floor.x");
 	IMesh* mGrid = myEngine->LoadMesh("Grid.x");
 	IMesh* mMatchbox = myEngine->LoadMesh("Matchbox.x");
 	IMesh* mMatch = myEngine->LoadMesh("Match.x");
 	IMesh* mPence = myEngine->LoadMesh("TwoPence.x");
 
-	IModel* floor = mFloor->CreateModel(0.0, 0.5, 0.0);
+	IModel* floor = mFloor->CreateModel();
 	IModel* grid = mGrid->CreateModel(0,0.2,0);
-	IModel* car = mMatchbox->CreateModel(0.0, 0.5, 0.0);
-	IModel* axleFront = meshgrid->CreateModel(0.0, 0.5, 0.0);
-	IModel* axleBack = meshgrid->CreateModel(0.0, 0.5, 0.0);
+	IModel* car = mMatchbox->CreateModel();
+	IModel* axleFront = mMatch->CreateModel();
+	IModel* axleBack = mMatch->CreateModel();
 
 	//Useful variables:
 	float s = 0.02;
 	float carHeight = 15.0;
 	float carWidth = 36.0;
 	float carLength = 54.0;
+	float axlePosition = carLength / 2 - 5.0;
 
 	//Settings:
 	axleFront->AttachToParent(car);
+	axleBack->AttachToParent(car);
+	axleFront->MoveZ(axlePosition);
+	axleBack->MoveZ(-axlePosition);
+
 
 
 	//-------------------------------------------------------------------//
