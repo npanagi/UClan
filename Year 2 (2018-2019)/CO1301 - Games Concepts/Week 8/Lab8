@@ -23,26 +23,46 @@ void main()
 	IMesh* mGrid = myEngine->LoadMesh("Grid.x");
 	IMesh* mMatchbox = myEngine->LoadMesh("Matchbox.x");
 	IMesh* mMatch = myEngine->LoadMesh("Match.x");
-	IMesh* mPence = myEngine->LoadMesh("TwoPence.x");
+	IMesh* mCoin = myEngine->LoadMesh("TwoPence.x");
 
 	IModel* floor = mFloor->CreateModel();
 	IModel* grid = mGrid->CreateModel(0,0.2,0);
 	IModel* car = mMatchbox->CreateModel();
 	IModel* axleFront = mMatch->CreateModel();
 	IModel* axleBack = mMatch->CreateModel();
+	IModel* wheelFR = mCoin->CreateModel();
+	IModel* wheelFL = mCoin->CreateModel();
+	IModel* wheelBR = mCoin->CreateModel();
+	IModel* wheelBL = mCoin->CreateModel();
 
 	//Useful variables:
-	float s = 0.5;
+	float ds = 0.5;
+	float theta = 0.2;
+	float dTheta = 0.2;
+	float thetaMax = 0.45;
 	float carHeight = 15.0;
 	float carWidth = 36.0;
 	float carLength = 54.0;
 	float axlePosition = carLength / 2 - 5.0;
+	float wheelPosition = carWidth / 2 + 3.0;
+
 
 	//Settings:
 	axleFront->AttachToParent(car);
 	axleBack->AttachToParent(car);
 	axleFront->MoveZ(axlePosition);
 	axleBack->MoveZ(-axlePosition);
+	wheelFR->AttachToParent(axleFront);
+	wheelFL->AttachToParent(axleFront);
+	wheelBR->AttachToParent(axleBack);
+	wheelBL->AttachToParent(axleBack);
+	wheelFR->MoveX(wheelPosition);
+	wheelFL->MoveX(-wheelPosition);
+	wheelBR->MoveX(-wheelPosition);
+	wheelBL->MoveX(wheelPosition);
+	c->RotateLocalX(20.0);
+
+	car->MoveY(13.0);
 
 
 
@@ -59,10 +79,32 @@ void main()
 		/**** Update your scene each frame here ****/
 
 		//Car Controls:
-		if (myEngine->KeyHeld(Key_W))
-			car->MoveLocalZ(s);
-		if (myEngine->KeyHeld(Key_S))
-			car->MoveLocalZ(-s);
+		if (myEngine->KeyHeld(Key_W)) {
+			car->MoveLocalZ(ds);
+			axleFront->RotateLocalX(ds * 2);
+			axleBack->RotateLocalX(ds * 2);
+		}
+		if (myEngine->KeyHeld(Key_S)) {
+			car->MoveLocalZ(-ds);
+			axleFront->RotateLocalX(-ds * 2);
+			axleBack->RotateLocalX(-ds * 2);
+		}
+		if (myEngine->KeyHeld(Key_A)) {
+			if (theta < thetaMax) {
+				axleFront->RotateY(-dTheta);
+				theta -= dTheta;
+
+			}
+
+		}
+		if (myEngine->KeyHeld(Key_D)) {
+
+			if (theta > -thetaMax) {
+				axleFront->RotateY(dTheta);
+				theta += dTheta;
+
+			}
+		}
 
 
 
