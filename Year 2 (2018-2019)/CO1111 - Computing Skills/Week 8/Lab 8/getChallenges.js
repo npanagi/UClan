@@ -1,7 +1,3 @@
-//---------------------//
-// FLORI ISE NOOBAS <3 //
-//---------------------//
-
 var xhttp = new XMLHttpRequest();
 
 xhttp.onreadystatechange = function() {
