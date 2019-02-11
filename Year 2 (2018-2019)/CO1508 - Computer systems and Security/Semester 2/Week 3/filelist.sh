@@ -6,11 +6,11 @@
 
 # EXAMPLE OUTPUT
 
-#2. weekdays.sh
+# 2. weekdays.sh
 
-#This is a file!
-#This file is readable!
-#The file size is greater than 0!
+# This is a file!
+# This file is readable!
+# The file size is greater than 0!
 
 
 z=1
